@@ -82,13 +82,11 @@ header h1.site-title {
     text-overflow: ellipsis;
     font-weight: 600;
     flex-grow: 1; /* Allow title to take space */
-    /* margin-right: auto; <-- Removed */
 }
 
 /* Search Styles Removed */
 
 header nav {
-    /* order: 3; <-- Removed */
     margin-left: 15px; /* Space between title and nav */
     flex-shrink: 0; /* Prevent nav from shrinking */
 }
@@ -208,8 +206,20 @@ main section.visible { /* Class added by JS */
     max-width: 600px;
 }
 
+/* === Hero Button Styles === */
+.hero-buttons {
+    margin-top: 2.5rem; /* More space above buttons */
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    justify-content: center; /* Center buttons */
+    gap: 15px; /* Space between buttons */
+}
+
+/* Primary CTA Button */
 .cta-button {
-    display: inline-block;
+    display: inline-flex; /* Use flex for icon alignment */
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
     background: linear-gradient(90deg, var(--primary-blue), #4a90e2);
     color: var(--light-text);
     padding: 12px 30px;
@@ -229,6 +239,31 @@ main section.visible { /* Class added by JS */
     background: linear-gradient(90deg, #4a90e2, var(--primary-blue));
     outline: none;
 }
+
+/* Secondary CTA Button Style */
+.cta-button-secondary {
+    display: inline-flex; /* Use flex for icon alignment */
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    background-color: transparent; /* Transparent background */
+    color: var(--light-text); /* Light text */
+    padding: 10px 28px; /* Slightly smaller padding */
+    border: 2px solid var(--primary-blue); /* Border using primary color */
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button-secondary:hover,
+.cta-button-secondary:focus {
+    transform: translateY(-3px);
+    background-color: var(--primary-blue); /* Fill background on hover */
+    color: var(--light-text);
+    outline: none;
+}
+
 
 /* === About Section === */
 #about p:first-of-type {
@@ -290,7 +325,7 @@ main section.visible { /* Class added by JS */
 
 .service-item {
     background-color: var(--section-bg-item);
-    padding: 35px 25px;
+    padding: 35px 25px 25px 25px; /* Adjusted bottom padding */
     border-radius: 10px;
     flex: 1 1 280px;
     max-width: 350px;
@@ -324,7 +359,7 @@ main section.visible { /* Class added by JS */
 
 #services .service-item p {
     font-size: 0.95rem;
-    flex-grow: 1;
+    flex-grow: 1; /* Allow paragraphs to push button down */
 }
 
 #services .service-item p strong {
@@ -335,6 +370,35 @@ main section.visible { /* Class added by JS */
 #services .service-item p + p {
     margin-top: 10px;
 }
+
+/* CTA Button within Service Item */
+.cta-button-service {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary-yellow); /* Use yellow to stand out */
+    color: var(--dark-bg); /* Dark text on yellow */
+    padding: 8px 18px; /* Smaller button */
+    border: none;
+    border-radius: 20px; /* Less rounded than hero buttons */
+    text-decoration: none;
+    font-size: 0.9rem; /* Smaller font */
+    font-weight: 600;
+    margin-top: 15px; /* Space above the button */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button-service:hover,
+.cta-button-service:focus {
+    background-color: #eab308; /* Darker yellow on hover */
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.cta-button-service i {
+    font-size: 0.9em; /* Adjust icon size slightly */
+}
+
 
 /* === Gallery Section === */
 #gallery {
@@ -467,7 +531,7 @@ footer {
 @media (max-width: 992px) {
     header nav ul { gap: 1rem; }
     header h1.site-title { font-size: 1.2rem; }
-    /* Search style removed */
+    /* Search removed */
     .service-item, .gallery-item {
         flex-basis: calc(50% - 25px);
         max-width: none;
@@ -478,8 +542,8 @@ footer {
     body { font-size: 15px; }
     header .container { justify-content: space-between; }
     header h1.site-title { order: 1; margin-left: 0.5rem; font-size: 1.15rem; margin-right: 10px;}
-    /* Search style removed */
-    header nav { order: 2; margin-left: 10px; flex-shrink: 0; } /* Nav comes after title */
+    /* Search removed */
+    header nav { order: 2; margin-left: 10px; flex-shrink: 0; }
     header nav ul { justify-content: flex-end; gap: 0.8rem; }
     header nav a { font-size: 0.9rem; }
 
@@ -494,8 +558,8 @@ footer {
     header .header-content { justify-content: center; gap: 10px; }
     header .logo-link { order: 1; }
     header h1.site-title { order: 2; width: 100%; text-align: center; margin: 0; font-size: 1.2rem; }
-    /* Search style removed */
-    header nav { order: 3; width: 100%; margin-left: 0; } /* Nav comes after title */
+    /* Search removed */
+    header nav { order: 3; width: 100%; margin-left: 0; }
     header nav ul { justify-content: center; flex-wrap: wrap; gap: 0.5rem 1rem; }
 
     .service-item, .gallery-item {
@@ -503,11 +567,12 @@ footer {
         max-width: 380px;
     }
     .features { padding: 20px; }
+    .hero-buttons { gap: 10px;} /* Reduce gap on small screens */
 }
 
 @media (max-width: 400px) {
     header nav a { font-size: 0.85rem; }
-    .cta-button, .map-link { font-size: 1rem; padding: 10px 20px; }
+    .cta-button, .cta-button-secondary, .map-link { font-size: 1rem; padding: 10px 20px; }
     .features h3 { font-size: 1.2rem; }
     .features li { font-size: 1rem; }
     .address, .phone, .contact-intro { font-size: 1rem; }

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Клуб настільного тенісу TONI-TOPS у Крюківщині. Контакти, адреса, тренування, оренда столів, турніри.">
+    <meta name="description" content="Клуб настільного тенісу TONI-TOPS у Крюківщині. Забронювати стіл, контакти, адреса, тренування, оренда столів, турніри.">
     <title>Клуб настільного тенісу TONI-TOPS</title>
 
-    <!-- Google tag (gtag.js) - KEEP THIS -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K00C10LR4S"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -32,9 +32,6 @@
                 <img src="logo.webp" alt="Логотип TONI-TOPS" class="logo">
             </a>
             <h1 class="site-title">Клуб настільного тенісу TONI-TOPS</h1>
-
-            <!-- Google Search Engine DIV Removed -->
-
             <nav>
                 <ul>
                     <li><a href="#about">Про нас</a></li>
@@ -52,7 +49,15 @@
             <div class="container">
                 <h2>Ласкаво просимо до TONI-TOPS!</h2>
                 <p>Ваше місце для настільного тенісу у Крюківщині.</p>
-                <a href="#contact" class="cta-button">Зв'язатися з нами</a>
+                <!-- Added Button Wrapper -->
+                <div class="hero-buttons">
+                    <a href="tel:+380974002012" class="cta-button">
+                       <i class="fas fa-calendar-check"></i> Забронювати стіл
+                    </a>
+                    <a href="#contact" class="cta-button-secondary">
+                       <i class="fas fa-info-circle"></i> Дізнатись більше
+                    </a>
+                 </div>
             </div>
         </section>
 
@@ -68,7 +73,7 @@
                         <li>Якісне професійне освітлення</li>
                         <li>Три професійні тенісні столи</li>
                         <li>Зручності: туалет та душ</li>
-                        <li>Бар з напоями та зона відпочинку</li>
+                        <li>Невеличкий бар з напоями та зона відпочинку</li>
                      </ul>
                  </div>
             </div>
@@ -86,9 +91,13 @@
                     </div>
                     <div class="service-item">
                          <i class="fas fa-calendar-alt service-icon"></i>
-                        <h3>Оренда столів</h3>
-                        <p>Пропонуємо <strong>три професійні тенісні столи</strong> для самостійної гри з друзями.</p>
-                        <p><strong>Вартість:</strong> 200 грн/год за один стіл.</p>
+                         <h3>Оренда столів</h3>
+                         <p>Пропонуємо <strong>три професійні тенісні столи</strong> для самостійної гри з друзями.</p>
+                         <p><strong>Вартість:</strong> 200 грн/год за один стіл.</p>
+                         <!-- Added Button Here -->
+                         <a href="tel:+380974002012" class="cta-button-service">
+                            <i class="fas fa-phone-alt"></i> Забронювати
+                         </a>
                     </div>
                     <div class="service-item">
                          <i class="fas fa-trophy service-icon"></i>
