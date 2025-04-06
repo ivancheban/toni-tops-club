@@ -62,6 +62,7 @@ header {
 .logo-link {
     display: inline-block;
     vertical-align: middle; /* Better alignment */
+    flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .logo {
@@ -70,7 +71,7 @@ header {
     display: block;
 }
 
-/* Added site-title class */
+/* Updated site-title style */
 header h1.site-title {
     color: var(--light-text);
     font-size: 1.3rem;
@@ -80,58 +81,16 @@ header h1.site-title {
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 600;
-    margin-right: auto; /* Push search/nav away */
+    flex-grow: 1; /* Allow title to take space */
+    /* margin-right: auto; <-- Removed */
 }
 
-/* === Google Search Styles === */
-.search-container {
-    margin-left: auto;
-    padding-left: 20px;
-    flex-shrink: 0;
-    order: 2;
-    max-width: 250px; /* Adjust max width as needed */
-}
-
-.search-container .gsc-control-cse {
-    padding: 0 !important;
-    border: none !important;
-    background: none !important;
-}
-.search-container input.gsc-input,
-.search-container input.gsc-input:hover,
-.search-container input.gsc-input:focus {
-    border: 1px solid rgba(0, 0, 0, 0.2) !important; /* Darker border for white background */
-    /* Background likely injected by Google as white/light */
-    color: #333333 !important; /* Dark Grey text color for input */
-    border-radius: 20px !important;
-    padding: 5px 15px !important;
-    height: 35px !important;
-    box-shadow: none !important;
-    outline: none !important;
-}
-/* Style placeholder text */
-.search-container input.gsc-input::placeholder {
-    color: #777777 !important; /* Medium Grey for placeholder */
-    opacity: 1;
-}
-
-.search-container .gsc-search-button input.gsc-search-button-v2,
-.search-container .gsc-search-button input.gsc-search-button-v2:hover,
-.search-container .gsc-search-button input.gsc-search-button-v2:focus {
-     padding: 0 12px !important;
-     height: 35px !important;
-     border-radius: 20px !important;
-     cursor: pointer;
-     border: 1px solid var(--primary-blue) !important;
-     background-color: var(--primary-blue) !important;
-     margin-left: 5px !important;
-}
-/* --- End of Google Search Styling --- */
-
+/* Search Styles Removed */
 
 header nav {
-    order: 3; /* Ensure nav is last on desktop */
-    margin-left: 15px; /* Space between search and nav */
+    /* order: 3; <-- Removed */
+    margin-left: 15px; /* Space between title and nav */
+    flex-shrink: 0; /* Prevent nav from shrinking */
 }
 
 header nav ul {
@@ -508,7 +467,7 @@ footer {
 @media (max-width: 992px) {
     header nav ul { gap: 1rem; }
     header h1.site-title { font-size: 1.2rem; }
-    .search-container { max-width: 200px; }
+    /* Search style removed */
     .service-item, .gallery-item {
         flex-basis: calc(50% - 25px);
         max-width: none;
@@ -519,8 +478,8 @@ footer {
     body { font-size: 15px; }
     header .container { justify-content: space-between; }
     header h1.site-title { order: 1; margin-left: 0.5rem; font-size: 1.15rem; margin-right: 10px;}
-    .search-container { order: 2; padding-left: 5px; max-width: 180px; margin-left: 0; }
-    header nav { order: 3; margin-left: 10px; }
+    /* Search style removed */
+    header nav { order: 2; margin-left: 10px; flex-shrink: 0; } /* Nav comes after title */
     header nav ul { justify-content: flex-end; gap: 0.8rem; }
     header nav a { font-size: 0.9rem; }
 
@@ -535,8 +494,8 @@ footer {
     header .header-content { justify-content: center; gap: 10px; }
     header .logo-link { order: 1; }
     header h1.site-title { order: 2; width: 100%; text-align: center; margin: 0; font-size: 1.2rem; }
-    .search-container { order: 3; width: 90%; max-width: 400px; padding: 0; margin: 5px auto; }
-    header nav { order: 4; width: 100%; margin-left: 0; }
+    /* Search style removed */
+    header nav { order: 3; width: 100%; margin-left: 0; } /* Nav comes after title */
     header nav ul { justify-content: center; flex-wrap: wrap; gap: 0.5rem 1rem; }
 
     .service-item, .gallery-item {
