@@ -2,10 +2,21 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport Meta Tag for Responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Клуб настільного тенісу TONI-TOPS у Крюківщині. Тренування, оренда столів, турніри, комфортні умови. Дивіться фото та відео!">
+    <meta name="description" content="Клуб настільного тенісу TONI-TOPS у Крюківщині. Контакти, адреса, тренування, оренда столів, турніри.">
     <title>Клуб настільного тенісу TONI-TOPS</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K00C10LR4S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-K00C10LR4S');
+    </script>
+    <!-- End Google tag -->
+
     <!-- Link to Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Link to Stylesheet -->
@@ -17,16 +28,24 @@
 
     <header>
         <div class="container header-content">
-            <a href="#hero" class="logo-link"> <!-- Link logo to top/hero -->
+            <a href="#hero" class="logo-link">
                 <img src="logo.webp" alt="Логотип TONI-TOPS" class="logo">
             </a>
-            <h1>Клуб настільного тенісу TONI-TOPS</h1>
+            <h1 class="site-title">Клуб настільного тенісу TONI-TOPS</h1>
+
+            <!-- Google Programmable Search Engine -->
+            <div class="search-container">
+                <script async src="https://cse.google.com/cse.js?cx=f4f2e0908af4a4cfe">
+                </script>
+                <div class="gcse-search"></div>
+            </div>
+            <!-- End Google Search -->
+
             <nav>
                 <ul>
                     <li><a href="#about">Про нас</a></li>
                     <li><a href="#services">Послуги</a></li>
                     <li><a href="#gallery">Галерея</a></li>
-                    <li><a href="#location">Розташування</a></li>
                     <li><a href="#contact">Контакти</a></li>
                 </ul>
             </nav>
@@ -97,49 +116,29 @@
                     <div class="gallery-item">
                         <video controls preload="metadata" playsinline poster="club-photo.webp" class="gallery-media">
                             <source src="club-video.mp4" type="video/mp4">
-                            <!-- Fallback text -->
                             Ваш браузер не підтримує відтворення відео.
-                            <!-- Optional: Add other formats for broader legacy support, though less common now -->
-                            <!-- <source src="club-video.webm" type="video/webm"> -->
                         </video>
                     </div>
-                    <!-- Add more gallery items here if needed -->
-                    <!-- Example:
-                    <div class="gallery-item">
-                        <img src="another-photo.webp" alt="Інше фото клубу" class="gallery-media">
-                    </div>
-                     -->
                 </div>
             </div>
         </section>
 
-        <!-- Location Section -->
-        <section id="location">
-            <div class="container">
+        <!-- Combined Contact & Location Section -->
+        <section id="contact">
+             <div class="container">
                 <h2 class="section-title">Де нас знайти</h2>
                  <p>Ми знаходимося за адресою:</p>
                  <p class="address">
+                     <i class="fas fa-map-marker-alt"></i>
                      вул. Одеська, 70, с. Крюківщина, Київська область, 08136
                  </p>
                  <a href="https://g.co/kgs/9mMpkyb" target="_blank" rel="noopener noreferrer" class="map-link">
-                     <i class="fas fa-map-marker-alt"></i> Відкрити на Google Картах
+                     <i class="fas fa-directions"></i> Відкрити на Google Картах
                  </a>
-                 <!-- Optional: Embed Google Map here -->
-                 <!-- <iframe src="YOUR_GOOGLE_MAPS_EMBED_URL" width="100%" height="450" style="border:0; margin-top: 30px; border-radius: 5px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-            </div>
-        </section>
 
-        <!-- Contact Section -->
-        <section id="contact">
-             <div class="container">
-                <h2 class="section-title">Контакти</h2>
-                <p>Готові почати грати чи дізнатись більше? Зателефонуйте нам!</p>
+                <p class="contact-intro">Готові почати грати чи дізнатись більше? Зателефонуйте нам!</p>
                 <p class="phone">
                    <i class="fas fa-phone"></i> Телефон: <a href="tel:+380974002012">+38 (097) 400 20 12</a>
-                </p>
-                <p>
-                    <!-- Add opening hours here if available -->
-                    <!-- <i class="fas fa-clock"></i> Години роботи: Пн-Пт: 10:00 - 22:00, Сб-Нд: 11:00 - 21:00 -->
                 </p>
             </div>
         </section>

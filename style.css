@@ -70,16 +70,68 @@ header {
     display: block;
 }
 
-header h1 {
+/* Added site-title class */
+header h1.site-title {
     color: var(--light-text);
-    font-size: 1.3rem; /* Adjusted size */
+    font-size: 1.3rem;
     margin-left: 1rem;
-    flex-grow: 1;
-    text-align: left; /* Align left by default */
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-weight: 600; /* Slightly bolder title */
+    font-weight: 600;
+    margin-right: auto; /* Push search/nav away */
+}
+
+/* === Google Search Styles === */
+.search-container {
+    margin-left: auto;
+    padding-left: 20px;
+    flex-shrink: 0;
+    order: 2;
+    max-width: 250px; /* Adjust max width as needed */
+}
+
+.search-container .gsc-control-cse {
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.search-container input.gsc-input,
+.search-container input.gsc-input:hover,
+.search-container input.gsc-input:focus {
+    border: 1px solid rgba(0, 0, 0, 0.2) !important; /* Darker border for white background */
+    /* Background likely injected by Google as white/light */
+    color: #333333 !important; /* Dark Grey text color for input */
+    border-radius: 20px !important;
+    padding: 5px 15px !important;
+    height: 35px !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+/* Style placeholder text */
+.search-container input.gsc-input::placeholder {
+    color: #777777 !important; /* Medium Grey for placeholder */
+    opacity: 1;
+}
+
+.search-container .gsc-search-button input.gsc-search-button-v2,
+.search-container .gsc-search-button input.gsc-search-button-v2:hover,
+.search-container .gsc-search-button input.gsc-search-button-v2:focus {
+     padding: 0 12px !important;
+     height: 35px !important;
+     border-radius: 20px !important;
+     cursor: pointer;
+     border: 1px solid var(--primary-blue) !important;
+     background-color: var(--primary-blue) !important;
+     margin-left: 5px !important;
+}
+/* --- End of Google Search Styling --- */
+
+
+header nav {
+    order: 3; /* Ensure nav is last on desktop */
+    margin-left: 15px; /* Space between search and nav */
 }
 
 header nav ul {
@@ -91,15 +143,14 @@ header nav ul {
 header nav a {
     color: var(--medium-text);
     text-decoration: none;
-    font-weight: 500; /* Medium weight */
+    font-weight: 500;
     transition: color 0.3s ease;
     font-size: 0.95rem;
     white-space: nowrap;
-    padding: 5px 0; /* Add vertical padding */
-    position: relative; /* For underline effect */
+    padding: 5px 0;
+    position: relative;
 }
 
-/* Underline effect on hover/focus */
 header nav a::after {
     content: '';
     position: absolute;
@@ -115,12 +166,14 @@ header nav a::after {
 header nav a:hover,
 header nav a:focus {
     color: var(--link-hover);
+    outline: none;
 }
 
 header nav a:hover::after,
 header nav a:focus::after {
     width: 100%;
 }
+
 
 /* === Section Styling === */
 main section {
@@ -174,17 +227,17 @@ main section.visible { /* Class added by JS */
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: calc(50vh - 70px); /* Ensure it takes significant height, adjust 70px based on header */
+    min-height: calc(50vh - 70px);
 }
 
-#hero .container { /* Center content vertically too */
+#hero .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #hero h2 {
-    font-size: clamp(1.8rem, 5vw, 2.8rem); /* Responsive font size */
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
     margin-bottom: 1rem;
     font-weight: 700;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
@@ -193,16 +246,16 @@ main section.visible { /* Class added by JS */
 #hero p {
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     margin-bottom: 2rem;
-    max-width: 600px; /* Limit paragraph width */
+    max-width: 600px;
 }
 
 .cta-button {
     display: inline-block;
     background: linear-gradient(90deg, var(--primary-blue), #4a90e2);
     color: var(--light-text);
-    padding: 12px 30px; /* More horizontal padding */
+    padding: 12px 30px;
     border: none;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 600;
@@ -214,12 +267,12 @@ main section.visible { /* Class added by JS */
 .cta-button:focus {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(44, 123, 229, 0.5);
-    background: linear-gradient(90deg, #4a90e2, var(--primary-blue)); /* Slightly shift gradient */
+    background: linear-gradient(90deg, #4a90e2, var(--primary-blue));
     outline: none;
 }
 
 /* === About Section === */
-#about p:first-of-type { /* Target the main paragraph */
+#about p:first-of-type {
     text-align: center;
     max-width: 700px;
     margin: 0 auto;
@@ -227,7 +280,7 @@ main section.visible { /* Class added by JS */
 }
 
 .features {
-    margin: 40px auto 0 auto; /* Center feature box */
+    margin: 40px auto 0 auto;
     text-align: left;
     max-width: 600px;
     background-color: var(--section-bg-feature);
@@ -251,26 +304,26 @@ main section.visible { /* Class added by JS */
 
 .features li {
     margin-bottom: 12px;
-    padding-left: 28px; /* More space for icon */
+    padding-left: 28px;
     position: relative;
     font-size: 1.05rem;
-    line-height: 1.5; /* Adjust line height */
+    line-height: 1.5;
 }
 
 .features li::before {
-    content: '✓'; /* Checkmark icon */
+    content: '✓';
     color: var(--primary-yellow);
     position: absolute;
     left: 0;
     top: 1px;
     font-weight: bold;
-    font-size: 1.2em; /* Slightly larger checkmark */
+    font-size: 1.2em;
 }
 
 /* === Services Section === */
 .service-items {
     display: flex;
-    justify-content: center; /* Center items */
+    justify-content: center;
     flex-wrap: wrap;
     gap: 30px;
     text-align: center;
@@ -278,10 +331,10 @@ main section.visible { /* Class added by JS */
 
 .service-item {
     background-color: var(--section-bg-item);
-    padding: 35px 25px; /* Increased padding */
-    border-radius: 10px; /* Slightly more rounded */
-    flex: 1 1 280px; /* Flexible basis, min width 280px */
-    max-width: 350px; /* Max width per item */
+    padding: 35px 25px;
+    border-radius: 10px;
+    flex: 1 1 280px;
+    max-width: 350px;
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -290,29 +343,29 @@ main section.visible { /* Class added by JS */
 }
 
 .service-item:hover {
-   transform: translateY(-5px) scale(1.02); /* Lift and slightly scale */
+   transform: translateY(-5px) scale(1.02);
    background-color: var(--section-bg-item-hover);
    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 .service-icon {
-    font-size: 2.8rem; /* Adjusted icon size */
+    font-size: 2.8rem;
     margin-bottom: 20px;
     color: var(--primary-yellow);
     display: inline-block;
-    line-height: 1; /* Prevent extra spacing */
+    line-height: 1;
 }
 
 .service-item h3 {
     color: var(--primary-yellow);
-    margin-bottom: 15px; /* More space */
+    margin-bottom: 15px;
     font-size: 1.25rem;
     font-weight: 600;
 }
 
 #services .service-item p {
-    font-size: 0.95rem; /* Slightly smaller text */
-    flex-grow: 1; /* Allow paragraphs to push price down if needed */
+    font-size: 0.95rem;
+    flex-grow: 1;
 }
 
 #services .service-item p strong {
@@ -320,7 +373,7 @@ main section.visible { /* Class added by JS */
     font-weight: 600;
 }
 
-#services .service-item p + p { /* Spacing for price */
+#services .service-item p + p {
     margin-top: 10px;
 }
 
@@ -337,11 +390,11 @@ main section.visible { /* Class added by JS */
 }
 
 .gallery-item {
-    flex: 1 1 400px; /* Allow items to grow/shrink, base size */
+    flex: 1 1 400px;
     max-width: 500px;
-    background-color: var(--dark-bg); /* Background for items */
-    border-radius: 10px; /* Match service items */
-    overflow: hidden; /* Clip content to rounded corners */
+    background-color: var(--dark-bg);
+    border-radius: 10px;
+    overflow: hidden;
     box-shadow: 0 5px 15px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -355,37 +408,63 @@ main section.visible { /* Class added by JS */
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
-    object-fit: cover; /* Cover the area */
-}
-
-.gallery-item video.gallery-media {
-    /* Height is determined by aspect-ratio now */
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
 }
 
 
-/* === Location & Contact Sections === */
-#location, #contact {
+/* === Combined Contact & Location Section === */
+#contact {
     text-align: center;
 }
 
-.address, .phone {
-    font-size: 1.1rem;
-    margin: 20px 0; /* More spacing */
-    color: var(--light-text);
-    line-height: 1.7; /* Better line spacing for address */
+#contact p:first-of-type {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
 }
 
-#contact p:first-of-type { /* Target the introductory sentence */
+.address {
     font-size: 1.1rem;
+    margin: 10px 0 15px 0;
+    color: var(--light-text);
+    line-height: 1.7;
+}
+
+.map-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    background-color: var(--primary-yellow);
+    color: var(--dark-bg);
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.map-link:hover,
+.map-link:focus {
+    background-color: #eab308;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.map-link i {
+    color: var(--dark-bg);
+}
+
+.contact-intro {
+    font-size: 1.1rem;
+    margin-top: 30px;
     margin-bottom: 15px;
 }
 
-.phone i, .map-link i, #contact p i { /* Style icons */
-    color: var(--primary-yellow);
-    margin-right: 8px;
-    font-size: 1.1em; /* Slightly larger icon */
-    vertical-align: middle; /* Align icon with text */
+.phone {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: var(--light-text);
 }
 
 .phone a {
@@ -399,36 +478,26 @@ main section.visible { /* Class added by JS */
     text-decoration: underline;
 }
 
-.map-link {
-    display: inline-flex; /* Use flex for icon alignment */
-    align-items: center; /* Vertically center icon and text */
-    margin-top: 20px; /* More spacing */
-    background-color: var(--primary-yellow);
-    color: var(--dark-bg);
-    padding: 10px 25px; /* Adjusted padding */
-    border-radius: 50px; /* Pill shape */
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+.address i, .phone i, .map-link i, .opening-hours i {
+    color: var(--primary-yellow);
+    margin-right: 8px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    width: 1.2em;
+    text-align: center;
+}
+.opening-hours {
+    margin-top: 15px;
+    font-size: 1rem;
 }
 
-.map-link:hover,
-.map-link:focus {
-    background-color: #eab308; /* Darker yellow */
-    transform: translateY(-2px);
-    outline: none;
-}
-
-.map-link i {
-    color: var(--dark-bg); /* Icon color matches text */
-}
 
 /* === Footer === */
 footer {
     background-color: #11111f;
     color: var(--medium-text);
     text-align: center;
-    padding: 25px 0; /* More padding */
+    padding: 25px 0;
     margin-top: 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 0.9rem;
@@ -436,101 +505,51 @@ footer {
 
 /* === Responsive Adjustments === */
 
-/* Larger Tablets / Small Laptops */
 @media (max-width: 992px) {
-    header nav ul {
-         gap: 1rem;
-    }
-    header h1 {
-        font-size: 1.2rem;
-    }
-    .service-item {
-        flex-basis: calc(50% - 30px); /* Two columns for services */
-        max-width: none; /* Remove max-width restriction */
-    }
-    .gallery-item {
-        flex-basis: calc(50% - 20px); /* Two columns for gallery */
+    header nav ul { gap: 1rem; }
+    header h1.site-title { font-size: 1.2rem; }
+    .search-container { max-width: 200px; }
+    .service-item, .gallery-item {
+        flex-basis: calc(50% - 25px);
         max-width: none;
     }
 }
 
-/* Tablets */
 @media (max-width: 768px) {
-    body { font-size: 15px; } /* Slightly smaller base font */
-
-    header .container {
-        justify-content: space-between; /* Keep logo left, nav right */
-    }
-    header h1 {
-        order: 1; /* Keep title first visually on wrap */
-        margin-left: 0.5rem;
-        font-size: 1.15rem;
-    }
-    header nav {
-       order: 2; /* Nav comes after title */
-       flex-shrink: 0; /* Prevent nav from shrinking too much */
-    }
-     header nav ul {
-        justify-content: flex-end;
-        gap: 0.8rem;
-    }
-    header nav a {
-        font-size: 0.9rem;
-    }
-    /* Optional: hide title if nav needs more space */
-    /* header h1 { display: none; } */
+    body { font-size: 15px; }
+    header .container { justify-content: space-between; }
+    header h1.site-title { order: 1; margin-left: 0.5rem; font-size: 1.15rem; margin-right: 10px;}
+    .search-container { order: 2; padding-left: 5px; max-width: 180px; margin-left: 0; }
+    header nav { order: 3; margin-left: 10px; }
+    header nav ul { justify-content: flex-end; gap: 0.8rem; }
+    header nav a { font-size: 0.9rem; }
 
     #hero h2 { font-size: clamp(1.8rem, 6vw, 2.4rem); }
     #hero p { font-size: clamp(0.95rem, 2.5vw, 1.1rem); }
     .section-title { font-size: 1.7rem; }
 }
 
-/* Mobile Phones */
 @media (max-width: 576px) {
-    html { scroll-padding-top: 60px; } /* Adjust offset for potentially smaller header */
+    html { scroll-padding-top: 60px; }
     .container { width: 95%; padding: 0 10px; }
+    header .header-content { justify-content: center; gap: 10px; }
+    header .logo-link { order: 1; }
+    header h1.site-title { order: 2; width: 100%; text-align: center; margin: 0; font-size: 1.2rem; }
+    .search-container { order: 3; width: 90%; max-width: 400px; padding: 0; margin: 5px auto; }
+    header nav { order: 4; width: 100%; margin-left: 0; }
+    header nav ul { justify-content: center; flex-wrap: wrap; gap: 0.5rem 1rem; }
 
-    header .header-content {
-        justify-content: center; /* Center logo */
-        gap: 10px; /* Space between logo and nav if it wraps below */
+    .service-item, .gallery-item {
+        flex-basis: 90%;
+        max-width: 380px;
     }
-    header h1 {
-        width: 100%;
-        text-align: center;
-        margin: 0; /* Remove margin when centered */
-        order: 2; /* Title below logo */
-        font-size: 1.2rem; /* Slightly larger when centered */
-    }
-     header nav {
-        order: 3; /* Nav below title */
-        width: 100%;
-     }
-     header nav ul {
-        justify-content: center;
-        flex-wrap: wrap; /* Allow nav links to wrap */
-        gap: 0.5rem 1rem; /* Vertical and horizontal gap */
-     }
-
-    .service-item,
-    .gallery-item {
-        flex-basis: 90%; /* Single column */
-        max-width: 380px; /* Max width in single column */
-    }
-    .features {
-        padding: 20px;
-    }
-    .features li::before { left: -5px; } /* Adjust checkmark pos */
+    .features { padding: 20px; }
 }
 
-/* Smaller Mobile Phones */
 @media (max-width: 400px) {
-    header nav a {
-        font-size: 0.85rem;
-    }
-    .cta-button, .map-link {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
+    header nav a { font-size: 0.85rem; }
+    .cta-button, .map-link { font-size: 1rem; padding: 10px 20px; }
     .features h3 { font-size: 1.2rem; }
     .features li { font-size: 1rem; }
+    .address, .phone, .contact-intro { font-size: 1rem; }
 }
