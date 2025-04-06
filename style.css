@@ -1,0 +1,536 @@
+/* === Basic Reset & Setup === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* === Variables === */
+:root {
+    --dark-bg: #1a1a2e; /* Dark blue/grey background */
+    --primary-blue: #2c7be5; /* Bright blue from logo */
+    --primary-yellow: #f7c04a; /* Yellow/Gold from logo */
+    --light-text: #ffffff;
+    --medium-text: #dddddd;
+    --link-hover: var(--primary-yellow);
+    --shadow-color: rgba(0, 0, 0, 0.3); /* Shadow color */
+    --section-bg-subtle: rgba(255, 255, 255, 0.02); /* Slightly different bg */
+    --section-bg-feature: rgba(255, 255, 255, 0.03); /* Feature box bg */
+    --section-bg-item: rgba(255, 255, 255, 0.05); /* Service item bg */
+    --section-bg-item-hover: rgba(255, 255, 255, 0.1); /* Service item hover */
+}
+
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    scroll-padding-top: 70px; /* Offset for fixed header during scroll-snap (approx header height) */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* System font stack */
+    line-height: 1.6;
+    color: var(--medium-text);
+    background-color: var(--dark-bg);
+    font-size: 16px; /* Base font size */
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px; /* Slightly reduced padding */
+}
+
+/* === Header === */
+header {
+    background-color: rgba(15, 15, 25, 0.85); /* Slightly more opaque */
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure header is above everything */
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo-link {
+    display: inline-block;
+    vertical-align: middle; /* Better alignment */
+}
+
+.logo {
+    height: 45px;
+    width: auto;
+    display: block;
+}
+
+header h1 {
+    color: var(--light-text);
+    font-size: 1.3rem; /* Adjusted size */
+    margin-left: 1rem;
+    flex-grow: 1;
+    text-align: left; /* Align left by default */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600; /* Slightly bolder title */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+}
+
+header nav a {
+    color: var(--medium-text);
+    text-decoration: none;
+    font-weight: 500; /* Medium weight */
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    padding: 5px 0; /* Add vertical padding */
+    position: relative; /* For underline effect */
+}
+
+/* Underline effect on hover/focus */
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--link-hover);
+    transition: width 0.3s ease;
+}
+
+header nav a:hover,
+header nav a:focus {
+    color: var(--link-hover);
+}
+
+header nav a:hover::after,
+header nav a:focus::after {
+    width: 100%;
+}
+
+/* === Section Styling === */
+main section {
+    padding: 50px 0; /* Slightly reduced padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    /* Fade-in effect */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+main section:last-of-type {
+    border-bottom: none;
+}
+
+main section.visible { /* Class added by JS */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    text-align: center;
+    color: var(--light-text);
+    font-size: 1.9rem; /* Adjusted size */
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-yellow));
+    border-radius: 1.5px;
+}
+
+/* === Hero Section === */
+#hero {
+    background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.95)), url('logo.webp') no-repeat center center;
+    background-size: contain;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    text-align: center;
+    padding: 70px 0; /* Adjusted padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(50vh - 70px); /* Ensure it takes significant height, adjust 70px based on header */
+}
+
+#hero .container { /* Center content vertically too */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#hero h2 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem); /* Responsive font size */
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 2rem;
+    max-width: 600px; /* Limit paragraph width */
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--primary-blue), #4a90e2);
+    color: var(--light-text);
+    padding: 12px 30px; /* More horizontal padding */
+    border: none;
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 4px 15px rgba(44, 123, 229, 0.3);
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(44, 123, 229, 0.5);
+    background: linear-gradient(90deg, #4a90e2, var(--primary-blue)); /* Slightly shift gradient */
+    outline: none;
+}
+
+/* === About Section === */
+#about p:first-of-type { /* Target the main paragraph */
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+}
+
+.features {
+    margin: 40px auto 0 auto; /* Center feature box */
+    text-align: left;
+    max-width: 600px;
+    background-color: var(--section-bg-feature);
+    padding: 25px 35px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-blue);
+}
+
+.features h3 {
+    color: var(--primary-yellow);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.features ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.features li {
+    margin-bottom: 12px;
+    padding-left: 28px; /* More space for icon */
+    position: relative;
+    font-size: 1.05rem;
+    line-height: 1.5; /* Adjust line height */
+}
+
+.features li::before {
+    content: '✓'; /* Checkmark icon */
+    color: var(--primary-yellow);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-weight: bold;
+    font-size: 1.2em; /* Slightly larger checkmark */
+}
+
+/* === Services Section === */
+.service-items {
+    display: flex;
+    justify-content: center; /* Center items */
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;
+}
+
+.service-item {
+    background-color: var(--section-bg-item);
+    padding: 35px 25px; /* Increased padding */
+    border-radius: 10px; /* Slightly more rounded */
+    flex: 1 1 280px; /* Flexible basis, min width 280px */
+    max-width: 350px; /* Max width per item */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.service-item:hover {
+   transform: translateY(-5px) scale(1.02); /* Lift and slightly scale */
+   background-color: var(--section-bg-item-hover);
+   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.service-icon {
+    font-size: 2.8rem; /* Adjusted icon size */
+    margin-bottom: 20px;
+    color: var(--primary-yellow);
+    display: inline-block;
+    line-height: 1; /* Prevent extra spacing */
+}
+
+.service-item h3 {
+    color: var(--primary-yellow);
+    margin-bottom: 15px; /* More space */
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+#services .service-item p {
+    font-size: 0.95rem; /* Slightly smaller text */
+    flex-grow: 1; /* Allow paragraphs to push price down if needed */
+}
+
+#services .service-item p strong {
+    color: var(--primary-yellow);
+    font-weight: 600;
+}
+
+#services .service-item p + p { /* Spacing for price */
+    margin-top: 10px;
+}
+
+/* === Gallery Section === */
+#gallery {
+    background-color: var(--section-bg-subtle);
+}
+
+.gallery-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.gallery-item {
+    flex: 1 1 400px; /* Allow items to grow/shrink, base size */
+    max-width: 500px;
+    background-color: var(--dark-bg); /* Background for items */
+    border-radius: 10px; /* Match service items */
+    overflow: hidden; /* Clip content to rounded corners */
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px var(--shadow-color);
+}
+
+.gallery-media {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+    object-fit: cover; /* Cover the area */
+}
+
+.gallery-item video.gallery-media {
+    /* Height is determined by aspect-ratio now */
+}
+
+
+/* === Location & Contact Sections === */
+#location, #contact {
+    text-align: center;
+}
+
+.address, .phone {
+    font-size: 1.1rem;
+    margin: 20px 0; /* More spacing */
+    color: var(--light-text);
+    line-height: 1.7; /* Better line spacing for address */
+}
+
+#contact p:first-of-type { /* Target the introductory sentence */
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.phone i, .map-link i, #contact p i { /* Style icons */
+    color: var(--primary-yellow);
+    margin-right: 8px;
+    font-size: 1.1em; /* Slightly larger icon */
+    vertical-align: middle; /* Align icon with text */
+}
+
+.phone a {
+    color: var(--primary-yellow);
+    text-decoration: none;
+    font-weight: 600;
+    transition: text-decoration 0.3s ease;
+}
+
+.phone a:hover {
+    text-decoration: underline;
+}
+
+.map-link {
+    display: inline-flex; /* Use flex for icon alignment */
+    align-items: center; /* Vertically center icon and text */
+    margin-top: 20px; /* More spacing */
+    background-color: var(--primary-yellow);
+    color: var(--dark-bg);
+    padding: 10px 25px; /* Adjusted padding */
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.map-link:hover,
+.map-link:focus {
+    background-color: #eab308; /* Darker yellow */
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.map-link i {
+    color: var(--dark-bg); /* Icon color matches text */
+}
+
+/* === Footer === */
+footer {
+    background-color: #11111f;
+    color: var(--medium-text);
+    text-align: center;
+    padding: 25px 0; /* More padding */
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.9rem;
+}
+
+/* === Responsive Adjustments === */
+
+/* Larger Tablets / Small Laptops */
+@media (max-width: 992px) {
+    header nav ul {
+         gap: 1rem;
+    }
+    header h1 {
+        font-size: 1.2rem;
+    }
+    .service-item {
+        flex-basis: calc(50% - 30px); /* Two columns for services */
+        max-width: none; /* Remove max-width restriction */
+    }
+    .gallery-item {
+        flex-basis: calc(50% - 20px); /* Two columns for gallery */
+        max-width: none;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    body { font-size: 15px; } /* Slightly smaller base font */
+
+    header .container {
+        justify-content: space-between; /* Keep logo left, nav right */
+    }
+    header h1 {
+        order: 1; /* Keep title first visually on wrap */
+        margin-left: 0.5rem;
+        font-size: 1.15rem;
+    }
+    header nav {
+       order: 2; /* Nav comes after title */
+       flex-shrink: 0; /* Prevent nav from shrinking too much */
+    }
+     header nav ul {
+        justify-content: flex-end;
+        gap: 0.8rem;
+    }
+    header nav a {
+        font-size: 0.9rem;
+    }
+    /* Optional: hide title if nav needs more space */
+    /* header h1 { display: none; } */
+
+    #hero h2 { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+    #hero p { font-size: clamp(0.95rem, 2.5vw, 1.1rem); }
+    .section-title { font-size: 1.7rem; }
+}
+
+/* Mobile Phones */
+@media (max-width: 576px) {
+    html { scroll-padding-top: 60px; } /* Adjust offset for potentially smaller header */
+    .container { width: 95%; padding: 0 10px; }
+
+    header .header-content {
+        justify-content: center; /* Center logo */
+        gap: 10px; /* Space between logo and nav if it wraps below */
+    }
+    header h1 {
+        width: 100%;
+        text-align: center;
+        margin: 0; /* Remove margin when centered */
+        order: 2; /* Title below logo */
+        font-size: 1.2rem; /* Slightly larger when centered */
+    }
+     header nav {
+        order: 3; /* Nav below title */
+        width: 100%;
+     }
+     header nav ul {
+        justify-content: center;
+        flex-wrap: wrap; /* Allow nav links to wrap */
+        gap: 0.5rem 1rem; /* Vertical and horizontal gap */
+     }
+
+    .service-item,
+    .gallery-item {
+        flex-basis: 90%; /* Single column */
+        max-width: 380px; /* Max width in single column */
+    }
+    .features {
+        padding: 20px;
+    }
+    .features li::before { left: -5px; } /* Adjust checkmark pos */
+}
+
+/* Smaller Mobile Phones */
+@media (max-width: 400px) {
+    header nav a {
+        font-size: 0.85rem;
+    }
+    .cta-button, .map-link {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    .features h3 { font-size: 1.2rem; }
+    .features li { font-size: 1rem; }
+}
