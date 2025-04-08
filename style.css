@@ -314,6 +314,37 @@ main section.visible { /* Class added by JS */
     font-size: 1.2em;
 }
 
+/* === Important Notice Styling === */
+.important-notice {
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly different background */
+    border-left: 4px solid var(--primary-yellow); /* Use yellow accent */
+    padding: 15px 25px;
+    margin: 40px auto 0 auto; /* Add space above, centered */
+    max-width: 600px; /* Match features width for consistency */
+    border-radius: 8px;
+    text-align: center; /* Center the text */
+}
+
+.important-notice p {
+    color: var(--light-text); /* Light text color */
+    font-weight: 500; /* Medium weight */
+    margin: 0; /* Reset default paragraph margin */
+    line-height: 1.5; /* Ensure good line spacing */
+}
+
+.important-notice strong {
+    color: var(--primary-yellow); /* Highlight the word "Увага!" */
+}
+
+.important-notice i {
+    color: var(--primary-yellow); /* Icon color */
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 1.1em; /* Make icon slightly larger */
+    vertical-align: middle; /* Align icon nicely with text */
+}
+/* === End of Important Notice Styling === */
+
+
 /* === Services Section === */
 .service-items {
     display: flex;
