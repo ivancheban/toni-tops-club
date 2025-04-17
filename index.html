@@ -3,14 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Updated Description -->
     <meta name="description" content="Клуб настільного тенісу TONI-TOPS у Крюківщині (Оранж Парк). Забронювати стіл, тренування, оренда столів, турніри. Потрібне змінне взуття!">
-
-    <!-- Added Keywords Meta Tag -->
     <meta name="keywords" content="настільний теніс крюківщина, настільний теніс гатне, теніс гатне, теніс крюківщина, теніс оранж парк, оренда столу теніс, тренування настільний теніс, змінне взуття теніс">
-
-    <!-- Updated Title -->
     <title>Настільний Теніс Крюківщина (Оранж Парк) | Клуб TONI-TOPS</title>
 
     <!-- Google tag (gtag.js) -->
@@ -19,16 +13,11 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-K00C10LR4S');
     </script>
-    <!-- End Google tag -->
 
-    <!-- Link to Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Link to Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- Favicon -->
     <link rel="icon" href="logo.webp" type="image/webp">
 </head>
 <body>
@@ -53,7 +42,7 @@
     <main>
         <!-- Hero Section -->
         <section id="hero">
-            <div class="container">
+             <div class="container">
                 <h2>Ласкаво просимо до TONI-TOPS!</h2>
                 <p>Ваше місце для настільного тенісу у Крюківщині.</p>
                 <div class="hero-buttons">
@@ -69,7 +58,7 @@
 
         <!-- About Section -->
         <section id="about">
-            <div class="container">
+           <div class="container">
                 <h2 class="section-title">Про клуб</h2>
                 <p>TONI-TOPS - це сучасний клуб настільного тенісу у Крюківщині, де раді бачити як початківців, так і досвідчених гравців. Ми пропонуємо комфортні умови для тренувань та гри, дружню атмосферу та професійний підхід.</p>
                 <div class="features">
@@ -93,7 +82,7 @@
             <div class="container">
                 <h2 class="section-title">Наші послуги</h2>
                 <div class="service-items">
-                    <div class="service-item">
+                     <div class="service-item">
                         <i class="fas fa-chalkboard-teacher service-icon"></i>
                         <h3>Тренування</h3>
                         <p>Групові та індивідуальні заняття для дітей та дорослих з досвідченими тренерами.</p>
@@ -116,48 +105,55 @@
             </div>
         </section>
 
-        <!-- Gallery Section - UPDATED -->
+        <!-- Gallery Section - ADDED ARROWS and gallery-wrapper -->
         <section id="gallery">
             <div class="container">
                 <h2 class="section-title">Наша атмосфера</h2>
-                <div class="gallery-items">
-                    <!-- Existing Photo -->
-                    <div class="gallery-item">
-                        <img src="club-photo.webp" alt="Гравці в клубі TONI-TOPS" class="gallery-media">
-                    </div>
-
-                    <!-- New Video 1 -->
-                    <div class="gallery-item">
-                        <video controls preload="metadata" playsinline poster="logo.webp" class="gallery-media"> <!-- Using logo as poster -->
-                            <source src="1.mp4" type="video/mp4">
-                            Ваш браузер не підтримує відтворення відео.
-                        </video>
-                    </div>
-
-                    <!-- New Video 2 -->
-                    <div class="gallery-item">
-                        <video controls preload="metadata" playsinline poster="logo.webp" class="gallery-media">
-                            <source src="2.mp4" type="video/mp4">
-                            Ваш браузер не підтримує відтворення відео.
-                        </video>
-                    </div>
-
-                    <!-- New Video 4 -->
-                    <div class="gallery-item">
-                        <video controls preload="metadata" playsinline poster="logo.webp" class="gallery-media">
-                            <source src="4.mp4" type="video/mp4">
-                            Ваш браузер не підтримує відтворення відео.
-                        </video>
-                    </div>
-
-                    <!-- New Video 9 -->
-                    <div class="gallery-item">
-                        <video controls preload="metadata" playsinline poster="logo.webp" class="gallery-media">
-                            <source src="9.mp4" type="video/mp4">
-                            Ваш браузер не підтримує відтворення відео.
-                        </video>
-                    </div>
-                </div>
+                <!-- Added gallery-wrapper for positioning arrows relative to the container -->
+                <div class="gallery-wrapper">
+                    <button class="gallery-arrow gallery-prev" aria-label="Попереднє">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="gallery-scroll-container">
+                        <div class="gallery-items">
+                            <!-- Photo -->
+                            <div class="gallery-item">
+                                <img src="club-photo.webp" alt="Гравці в клубі TONI-TOPS" class="gallery-media">
+                            </div>
+                            <!-- Video 1 -->
+                            <div class="gallery-item">
+                                <video controls preload="metadata" playsinline poster="poster-1.webp" class="gallery-media"> <!-- Assumes poster-1.webp exists -->
+                                    <source src="1.mp4" type="video/mp4">
+                                    Ваш браузер не підтримує відтворення відео.
+                                </video>
+                            </div>
+                            <!-- Video 2 -->
+                            <div class="gallery-item">
+                                <video controls preload="metadata" playsinline poster="poster-2.webp" class="gallery-media"> <!-- Assumes poster-2.webp exists -->
+                                    <source src="2.mp4" type="video/mp4">
+                                    Ваш браузер не підтримує відтворення відео.
+                                </video>
+                            </div>
+                            <!-- Video 4 -->
+                            <div class="gallery-item">
+                                <video controls preload="metadata" playsinline poster="poster-4.webp" class="gallery-media"> <!-- Assumes poster-4.webp exists -->
+                                    <source src="4.mp4" type="video/mp4">
+                                    Ваш браузер не підтримує відтворення відео.
+                                </video>
+                            </div>
+                            <!-- Video 9 -->
+                            <div class="gallery-item">
+                                <video controls preload="metadata" playsinline poster="poster-9.webp" class="gallery-media"> <!-- Assumes poster-9.webp exists -->
+                                    <source src="9.mp4" type="video/mp4">
+                                    Ваш браузер не підтримує відтворення відео.
+                                </video>
+                            </div>
+                        </div> <!-- End gallery-items -->
+                    </div> <!-- End gallery-scroll-container -->
+                    <button class="gallery-arrow gallery-next" aria-label="Наступне">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div> <!-- End gallery-wrapper -->
             </div>
         </section>
         <!-- End of Gallery Section -->

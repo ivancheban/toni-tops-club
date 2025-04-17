@@ -431,40 +431,128 @@ main section.visible { /* Class added by JS */
 }
 
 
-/* === Gallery Section === */
+/* === Gallery Section Styles (Scroll Snap Carousel) === */
 #gallery {
     background-color: var(--section-bg-subtle);
+    padding-bottom: 60px; /* Add padding for potential scrollbar space if not hidden */
 }
 
+/* NEW: Wrapper to contain scroll container and arrows */
+.gallery-wrapper {
+    position: relative; /* Establish positioning context for arrows */
+}
+
+.gallery-scroll-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Snap horizontally, mandatory */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    padding-bottom: 15px; /* Add some space at the bottom, e.g., for scrollbar padding */
+    margin: 0; /* Remove negative margin if arrows are outside */
+    padding-left: 0; /* Remove padding if arrows handle spacing */
+    padding-right: 0;
+}
+
+.gallery-scroll-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+/* The flex container holding all items */
 .gallery-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+    display: flex; /* Lay out items horizontally */
+    gap: 15px; /* Space between items */
+    width: max-content; /* Ensure container is wide enough for all items */
+    padding-left: 5px; /* Add slight padding for first item snapping */
+    padding-right: 5px; /* Add slight padding for last item snapping */
 }
 
+/* Individual gallery items */
 .gallery-item {
-    flex: 1 1 400px;
-    max-width: 500px;
+    flex: 0 0 85%; /* Don't grow, don't shrink, base width 85% of the container */
+    max-width: 500px; /* Maintain max width for larger screens */
+    scroll-snap-align: center; /* Snap items to the center */
     background-color: var(--dark-bg);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
 
-.gallery-item:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 25px var(--shadow-color);
+/* NEW: Arrow Button Styles */
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10; /* Ensure arrows are above gallery items */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: var(--light-text);
+    border: none;
+    border-radius: 50%; /* Circular */
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0.7; /* Slightly transparent by default */
+}
+
+.gallery-arrow:hover,
+.gallery-arrow:focus {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker on hover/focus */
+    opacity: 1;
+    outline: none;
+}
+
+.gallery-prev {
+    left: -10px; /* Position left arrow */
+}
+
+.gallery-next {
+    right: -10px; /* Position right arrow */
+}
+
+/* Hide arrows on very small screens where swiping is primary */
+@media (max-width: 576px) {
+    .gallery-arrow {
+        /* display: none; */ /* Option to hide completely */
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        left: 0px; /* Position closer to edge */
+    }
+     .gallery-next {
+        right: 0px; /* Position closer to edge */
+    }
+}
+
+/* Existing gallery item media queries - may need slight adjustment */
+@media (max-width: 768px) {
+    .gallery-item {
+        flex-basis: 90%;
+    }
+}
+@media (max-width: 576px) {
+    .gallery-item {
+        flex-basis: 92%;
+         max-width: none;
+    }
+     .gallery-scroll-container {
+        /* Adjustments if arrows are inside padding */
+    }
 }
 
 .gallery-media {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
 }
+/* === End of Gallery Section Styles === */
 
 
 /* === Combined Contact & Location Section === */
@@ -563,7 +651,7 @@ footer {
     header nav ul { gap: 1rem; }
     header h1.site-title { font-size: 1.2rem; }
     /* Search removed */
-    .service-item, .gallery-item {
+    .service-item { /* Gallery handled separately */
         flex-basis: calc(50% - 25px);
         max-width: none;
     }
@@ -593,7 +681,7 @@ footer {
     header nav { order: 3; width: 100%; margin-left: 0; }
     header nav ul { justify-content: center; flex-wrap: wrap; gap: 0.5rem 1rem; }
 
-    .service-item, .gallery-item {
+    .service-item { /* Gallery handled separately */
         flex-basis: 90%;
         max-width: 380px;
     }

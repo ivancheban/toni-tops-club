@@ -21,8 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: offsetPosition
                     // 'behavior: smooth' is handled by CSS 'scroll-behavior: smooth;'
                 });
-
-                // Optional: Close mobile menu if you implement one
             }
         });
     });
@@ -34,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
      // --- Fade-in effect for sections on scroll ---
-     // Uses Intersection Observer API for performance
      const sections = document.querySelectorAll('main section');
      const options = {
          root: null, // Use the viewport as the root
@@ -44,25 +41,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
      const observer = new IntersectionObserver((entries, observer) => {
          entries.forEach(entry => {
-             // If the section is intersecting (visible)
              if (entry.isIntersecting) {
-                 // Add the 'visible' class (CSS handles the transition)
                  entry.target.classList.add('visible');
                  // Optional: Unobserve the element after it becomes visible
-                 // to prevent repeated triggering and save resources.
                  // observer.unobserve(entry.target);
              }
-             // Optional: Remove class if you want fade-out effect when scrolling up
-             // else {
-             //     entry.target.classList.remove('visible');
-             // }
          });
      }, options);
 
-     // Observe each section in the main content
      sections.forEach(section => {
-         // Initial state (opacity: 0, transform: translateY(20px)) is set in CSS
          observer.observe(section);
      });
 
-});
+
+    // --- NEW: Gallery Carousel Arrow Controls ---
+    const galleryContainer = document.querySelector('.gallery-scroll-container');
+    const prevButton = document.querySelector('.gallery-prev');
+    const nextButton = document.querySelector('.gallery-next');
+
+    if (galleryContainer && prevButton && nextButton) {
+        // Function to calculate the scroll amount (approximates one item width + gap)
+        const getScrollAmount = () => {
+            const firstItem = galleryContainer.querySelector('.gallery-item');
+            if (firstItem) {
+                // Get item width and the gap from the parent flex container
+                const itemStyle = window.getComputedStyle(firstItem);
+                const containerStyle = window.getComputedStyle(galleryContainer.querySelector('.gallery-items'));
+                const itemWidth = firstItem.offsetWidth; // Includes padding/border
+                const gap = parseFloat(containerStyle.gap) || 15; // Use defined gap or fallback
+                return itemWidth + gap;
+            }
+            return galleryContainer.clientWidth * 0.85; // Fallback scroll amount
+        };
+
+        // Previous button click
+        prevButton.addEventListener('click', () => {
+            const scrollAmount = getScrollAmount();
+            galleryContainer.scrollBy({
+                left: -scrollAmount, // Scroll left
+                behavior: 'smooth' // Use smooth scrolling
+            });
+        });
+
+        // Next button click
+        nextButton.addEventListener('click', () => {
+            const scrollAmount = getScrollAmount();
+            galleryContainer.scrollBy({
+                left: scrollAmount, // Scroll right
+                behavior: 'smooth' // Use smooth scrolling
+            });
+        });
+
+        // Optional: Hide/show arrows based on scroll position (more advanced)
+        // You could add an event listener for the 'scroll' event on galleryContainer
+        // and check conditions like:
+        // prevButton.style.display = galleryContainer.scrollLeft > 10 ? 'flex' : 'none';
+        // nextButton.style.display = galleryContainer.scrollWidth - galleryContainer.clientWidth - galleryContainer.scrollLeft > 10 ? 'flex' : 'none';
+        // Remember to handle initial state and potential resize events if using this.
+    }
+    // --- End of Gallery Controls ---
+
+}); // End of DOMContentLoaded listener
