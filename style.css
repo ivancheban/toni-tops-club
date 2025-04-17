@@ -434,12 +434,12 @@ main section.visible { /* Class added by JS */
 /* === Gallery Section Styles (Scroll Snap Carousel) === */
 #gallery {
     background-color: var(--section-bg-subtle);
-    padding-bottom: 60px; /* Add padding for potential scrollbar space if not hidden */
+    padding-bottom: 60px;
 }
 
-/* NEW: Wrapper to contain scroll container and arrows */
+/* Wrapper to contain scroll container and arrows */
 .gallery-wrapper {
-    position: relative; /* Establish positioning context for arrows */
+    position: relative; /* Positioning context for arrows */
 }
 
 /* The container that enables scrolling and snapping */
@@ -448,7 +448,6 @@ main section.visible { /* Class added by JS */
     scroll-snap-type: x mandatory; /* Snap horizontally, mandatory */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     scrollbar-width: none; /* Hide scrollbar Firefox */
-    /* Padding added inside .gallery-items now for snapping */
 }
 
 /* Hide scrollbar on Chrome, Safari, Edge */
@@ -467,15 +466,16 @@ main section.visible { /* Class added by JS */
 
 /* Individual gallery items */
 .gallery-item {
-    flex: 0 0 85%; /* Base width 85% of the container */
-    max-width: 450px; /* Slightly smaller max width */
+    /* Calculate width: 100% of viewport minus padding/margins */
+    flex: 0 0 80vw; /* Start with 80% of viewport width */
+    max-width: 450px; /* Max width on larger screens */
     scroll-snap-align: center; /* Snap items to the center */
     background-color: var(--dark-bg);
     border-radius: 10px;
-    overflow: hidden;
+    overflow: hidden; /* Crucial to prevent content overflow */
     box-shadow: 0 5px 15px var(--shadow-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    aspect-ratio: 16 / 9; /* Set aspect ratio on the item itself */
 }
 
 /* Arrow Button Styles */
@@ -507,11 +507,11 @@ main section.visible { /* Class added by JS */
 }
 
 .gallery-prev {
-    left: -10px;
+    left: -5px; /* Adjusted position relative to container padding */
 }
 
 .gallery-next {
-    right: -10px;
+    right: -5px; /* Adjusted position relative to container padding */
 }
 
 /* Responsive Adjustments for Gallery */
@@ -519,43 +519,44 @@ main section.visible { /* Class added by JS */
 /* Tablets */
 @media (max-width: 768px) {
     .gallery-item {
-        flex-basis: 88%; /* Slightly wider on tablets */
-        max-width: 480px; /* Allow slightly larger max */
+        flex-basis: 85vw; /* Slightly larger on tablets */
+        max-width: 480px;
     }
     .gallery-arrow { /* Make arrows slightly smaller */
         width: 38px;
         height: 38px;
         font-size: 1.1rem;
     }
-    .gallery-prev { left: -5px; }
-    .gallery-next { right: -5px; }
+    .gallery-prev { left: 0px; } /* Adjust arrow pos */
+    .gallery-next { right: 0px; }
 }
 
-/* Mobile Phones - Hide arrows, adjust item width */
+/* Mobile Phones - Hide arrows, adjust item width further */
 @media (max-width: 576px) {
     .gallery-arrow {
-        display: none; /* Hide arrows on small screens */
+        display: none; /* Hide arrows */
     }
     .gallery-item {
-        flex-basis: 90%; /* Adjust for better preview */
-         max-width: none; /* Remove max-width on small screens */
-         scroll-snap-align: start; /* Snap to start might feel better on mobile */
+        flex-basis: 88vw; /* Take slightly more width */
+         max-width: none;
+         scroll-snap-align: start; /* Snap to start often feels better */
     }
-     .gallery-items { /* Adjust padding for edge items on mobile */
-        padding: 0 10px;
-        gap: 10px; /* Reduce gap */
+     .gallery-items {
+        padding: 0 6vw; /* Adjust side padding */
+        gap: 10px;
     }
      .gallery-scroll-container {
         /* Ensure container allows seeing edge padding */
      }
 }
 
+
 .gallery-media {
     display: block;
     width: 100%;
-    height: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
+    height: 100%; /* Make media fill the container */
+    /* aspect-ratio removed from here, now on parent */
+    object-fit: cover; /* Cover the area, will crop if needed */
 }
 /* === End of Gallery Section Styles === */
 
@@ -650,7 +651,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* === Responsive Adjustments === */
+/* === Responsive Adjustments (General) === */
 
 @media (max-width: 992px) {
     header nav ul { gap: 1rem; }
