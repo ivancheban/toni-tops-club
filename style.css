@@ -442,19 +442,18 @@ main section.visible { /* Class added by JS */
     position: relative; /* Establish positioning context for arrows */
 }
 
+/* The container that enables scrolling and snapping */
 .gallery-scroll-container {
     overflow-x: auto; /* Enable horizontal scrolling */
     scroll-snap-type: x mandatory; /* Snap horizontally, mandatory */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     scrollbar-width: none; /* Hide scrollbar Firefox */
-    padding-bottom: 15px; /* Add some space at the bottom, e.g., for scrollbar padding */
-    margin: 0; /* Remove negative margin if arrows are outside */
-    padding-left: 0; /* Remove padding if arrows handle spacing */
-    padding-right: 0;
+    /* Padding added inside .gallery-items now for snapping */
 }
 
+/* Hide scrollbar on Chrome, Safari, Edge */
 .gallery-scroll-container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome/Safari */
+    display: none;
 }
 
 /* The flex container holding all items */
@@ -462,14 +461,14 @@ main section.visible { /* Class added by JS */
     display: flex; /* Lay out items horizontally */
     gap: 15px; /* Space between items */
     width: max-content; /* Ensure container is wide enough for all items */
-    padding-left: 5px; /* Add slight padding for first item snapping */
-    padding-right: 5px; /* Add slight padding for last item snapping */
+     /* Add padding here for first/last item visibility relative to container edge */
+    padding: 0 15px;
 }
 
 /* Individual gallery items */
 .gallery-item {
-    flex: 0 0 85%; /* Don't grow, don't shrink, base width 85% of the container */
-    max-width: 500px; /* Maintain max width for larger screens */
+    flex: 0 0 85%; /* Base width 85% of the container */
+    max-width: 450px; /* Slightly smaller max width */
     scroll-snap-align: center; /* Snap items to the center */
     background-color: var(--dark-bg);
     border-radius: 10px;
@@ -479,16 +478,16 @@ main section.visible { /* Class added by JS */
     position: relative;
 }
 
-/* NEW: Arrow Button Styles */
+/* Arrow Button Styles */
 .gallery-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10; /* Ensure arrows are above gallery items */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
     color: var(--light-text);
     border: none;
-    border-radius: 50%; /* Circular */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
@@ -497,52 +496,58 @@ main section.visible { /* Class added by JS */
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease, opacity 0.3s ease;
-    opacity: 0.7; /* Slightly transparent by default */
+    opacity: 0.7;
 }
 
 .gallery-arrow:hover,
 .gallery-arrow:focus {
-    background-color: rgba(0, 0, 0, 0.8); /* Darker on hover/focus */
+    background-color: rgba(0, 0, 0, 0.8);
     opacity: 1;
     outline: none;
 }
 
 .gallery-prev {
-    left: -10px; /* Position left arrow */
+    left: -10px;
 }
 
 .gallery-next {
-    right: -10px; /* Position right arrow */
+    right: -10px;
 }
 
-/* Hide arrows on very small screens where swiping is primary */
-@media (max-width: 576px) {
-    .gallery-arrow {
-        /* display: none; */ /* Option to hide completely */
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
-        left: 0px; /* Position closer to edge */
-    }
-     .gallery-next {
-        right: 0px; /* Position closer to edge */
-    }
-}
+/* Responsive Adjustments for Gallery */
 
-/* Existing gallery item media queries - may need slight adjustment */
+/* Tablets */
 @media (max-width: 768px) {
     .gallery-item {
-        flex-basis: 90%;
+        flex-basis: 88%; /* Slightly wider on tablets */
+        max-width: 480px; /* Allow slightly larger max */
     }
+    .gallery-arrow { /* Make arrows slightly smaller */
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+    }
+    .gallery-prev { left: -5px; }
+    .gallery-next { right: -5px; }
 }
+
+/* Mobile Phones - Hide arrows, adjust item width */
 @media (max-width: 576px) {
+    .gallery-arrow {
+        display: none; /* Hide arrows on small screens */
+    }
     .gallery-item {
-        flex-basis: 92%;
-         max-width: none;
+        flex-basis: 90%; /* Adjust for better preview */
+         max-width: none; /* Remove max-width on small screens */
+         scroll-snap-align: start; /* Snap to start might feel better on mobile */
+    }
+     .gallery-items { /* Adjust padding for edge items on mobile */
+        padding: 0 10px;
+        gap: 10px; /* Reduce gap */
     }
      .gallery-scroll-container {
-        /* Adjustments if arrows are inside padding */
-    }
+        /* Ensure container allows seeing edge padding */
+     }
 }
 
 .gallery-media {
