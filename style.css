@@ -457,10 +457,9 @@ main section.visible { /* Class added by JS */
 
 /* The flex container holding all items */
 .gallery-items {
-    display: flex; /* Lay out items horizontally */
-    gap: 15px; /* Space between items */
-    width: max-content; /* Ensure container is wide enough for all items */
-     /* Add padding here for first/last item visibility relative to container edge */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
     padding: 0 15px;
 }
 
@@ -478,76 +477,26 @@ main section.visible { /* Class added by JS */
     aspect-ratio: 16 / 9; /* Set aspect ratio on the item itself */
 }
 
-/* Arrow Button Styles */
-.gallery-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: var(--light-text);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-    opacity: 0.7;
-}
-
-.gallery-arrow:hover,
-.gallery-arrow:focus {
-    background-color: rgba(0, 0, 0, 0.8);
-    opacity: 1;
-    outline: none;
-}
-
-.gallery-prev {
-    left: -5px; /* Adjusted position relative to container padding */
-}
-
-.gallery-next {
-    right: -5px; /* Adjusted position relative to container padding */
-}
-
 /* Responsive Adjustments for Gallery */
 
 /* Tablets */
 @media (max-width: 768px) {
     .gallery-item {
-        flex-basis: 85vw; /* Slightly larger on tablets */
+        flex-basis: 85vw;
         max-width: 480px;
     }
-    .gallery-arrow { /* Make arrows slightly smaller */
-        width: 38px;
-        height: 38px;
-        font-size: 1.1rem;
-    }
-    .gallery-prev { left: 0px; } /* Adjust arrow pos */
-    .gallery-next { right: 0px; }
 }
 
-/* Mobile Phones - Hide arrows, adjust item width further */
+/* Mobile Phones */
 @media (max-width: 576px) {
-    .gallery-arrow {
-        display: none; /* Hide arrows */
-    }
     .gallery-item {
-        flex-basis: 88vw; /* Take slightly more width */
-         max-width: none;
-         scroll-snap-align: start; /* Snap to start often feels better */
+        flex-basis: 88vw;
+        max-width: none;
     }
-     .gallery-items {
-        padding: 0 6vw; /* Adjust side padding */
+    .gallery-items {
+        padding: 0 6vw;
         gap: 10px;
     }
-     .gallery-scroll-container {
-        /* Ensure container allows seeing edge padding */
-     }
 }
 
 
